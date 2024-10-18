@@ -1,7 +1,3 @@
-Here's a GitHub README file for your project:
-
----
-
 # MyKad Validator
 
 This JavaScript tool helps validate a Malaysian MyKad number and provides useful information such as the holder's:
