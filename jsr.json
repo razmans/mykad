@@ -1,0 +1,6 @@
+{
+    "name": "@razmans/mykad",
+    "version": "1.0.0",
+    "license": "MIT",
+    "exports": "./index.ts"
+  }
