@@ -41,7 +41,13 @@ This JavaScript tool helps validate a Malaysian MyKad number and provides useful
 To use the tool, import the necessary module and call the function with a valid MyKad number:
 
 ```javascript
-import { mykadValidator, mykadAge } from '@razmans/mykad';
+import { 
+    mykadValidator, 
+    mykadAge, 
+    mykadAge, 
+    mykadDOB, 
+    mykadState, 
+    mykadGender } from '@razmans/mykad';
 
 const myKadNumber = 'your-mykad-number-here';
 const validate = mykadValidator(myKadNumber); // Example: true/false

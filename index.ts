@@ -1,5 +1,29 @@
 /**
+ * @example
+ * 
+ * This is an example of how to use the functions in this package.
+ * 
+ * ```ts 
+ * import { 
+ * mykadValidator, 
+ * mykadAge, 
+ * mykadAge, 
+ * mykadDOB, 
+ * mykadState, 
+ * mykadGender } from '@razmans/mykad';
+ * 
+ * const myKadNumber = 'your-mykad-number-here';
+ * const validate = mykadValidator(myKadNumber); // Example: true/false
+ * const age=mykadAge(myKadNumber); // Example: '30'
+ * const dob=mykadDOB(myKadNumber); // Example: '1994-02-03'
+ * const state=mykadState(myKadNumber); // Example: 'WP Kuala Lumpur'
+ * const gender=mykadGender(myKadNumber):// Example: 'F' or 'M'
+```
+ */
+
+/**
  * MyKad Validator
+ * @module mykadValidator
  * @param mykad MyKad number
  * @returns Boolean value
  */
@@ -12,6 +36,7 @@ export function mykadValidator(mykad: string): boolean {
 
 /**
  * MyKad Age Checker
+ * @module mykadAge
  * @param mykad MyKad number
  * @returns Age of the person
  */
@@ -33,6 +58,7 @@ export function mykadAge(mykad: string): number {
 
 /**
  * MyKad Details Checker
+ * @module mykadDOB
  * @param mykad MyKad number
  * @returns String date in the format of YYYY-MM-DD
  */
@@ -60,6 +86,7 @@ export function mykadDOB(mykad: string): string {
 
 /**
  * MyKad Gender Checker
+ * @module mykadGender
  * @param mykad MyKad number
  * @returns Gender string 'F' or 'M'
  */
@@ -74,6 +101,7 @@ export function mykadGender(mykad: string): string {
 
 /**
  * MyKad State Checker
+ * @module mykadState
  * @param mykad MyKad number
  * @returns String of the state
  */
@@ -106,7 +134,16 @@ export function mykadState(mykad: string): string {
   return state[stateCode] ? state[stateCode] : State.NotInMalaysia;
 }
 
-/** Enum for States in Malaysia */
+/**
+ * @module State
+ * @example
+ * ```ts
+ * import { State } from '@razmans/mykad';
+ *
+ * const state = State.Johor;   // Example: 'Johor'
+ * ```
+ * Enum for States in Malaysia
+ * */
 export enum State {
   Johor = 'Johor',
   Kedah = 'Kedah',
