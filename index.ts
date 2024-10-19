@@ -200,9 +200,7 @@ export function mykadState(mykad: string): string {
     56: State.WPKualaLumpur,
     57: State.WPKualaLumpur,
     58: State.WPLabuan,
-    59: State.NegeriSembilan,
-    71: State.NotInMalaysia,
-    72: State.NotInMalaysia
+    59: State.NegeriSembilan
   };
   return state[stateCode as keyof typeof state] || State.NotInMalaysia;
 }
