@@ -25,17 +25,24 @@
 ```
  */
 
+/**
+ * Read MyKad Number
+ * @module readMyKadNum
+ * @param mykad MyKad number
+ * @returns Object with details of the MyKad number
+ */
 
+/** Read MyKad number and return all details */
 export function readMyKadNum(mykad: string): { [key: string]: any } {
   // valid
-  if(mykadValidator(mykad)){
+  if (mykadValidator(mykad)) {
     return {
       isValid: true,
       age: mykadAge(mykad),
       dob: mykadDOB(mykad),
       state: mykadState(mykad),
-      gender: mykadGender(mykad),
-    }
+      gender: mykadGender(mykad)
+    };
   }
 
   // invalid
@@ -44,10 +51,9 @@ export function readMyKadNum(mykad: string): { [key: string]: any } {
     age: 0,
     dob: 'MYKAD INVALID',
     state: 'MYKAD INVALID',
-    gender: 'MYKAD INVALID',
-  }
+    gender: 'MYKAD INVALID'
+  };
 }
-
 
 /**
  * MyKad Validator
