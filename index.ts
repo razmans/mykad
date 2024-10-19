@@ -10,7 +10,8 @@
  * mykadAge, 
  * mykadDOB, 
  * mykadState, 
- * mykadGender } from '@razmans/mykad';
+ * mykadGender,
+ * readMyKadNum, } from '@razmans/mykad';
  * 
  * const myKadNumber = 'your-mykad-number-here';
  * const validate = mykadValidator(myKadNumber); // Example: true/false
@@ -18,8 +19,35 @@
  * const dob=mykadDOB(myKadNumber); // Example: '1994-02-03'
  * const state=mykadState(myKadNumber); // Example: 'WP Kuala Lumpur'
  * const gender=mykadGender(myKadNumber);// Example: 'F' or 'M'
+ * 
+ * or 
+ * const { isValid, age, dob, state, gender } = readMyKadNum(myKadNumber)
 ```
  */
+
+
+export function readMyKadNum(mykad: string): { [key: string]: any } {
+  // valid
+  if(mykadValidator(mykad)){
+    return {
+      isValid: true,
+      age: mykadAge(mykad),
+      dob: mykadDOB(mykad),
+      state: mykadState(mykad),
+      gender: mykadGender(mykad),
+    }
+  }
+
+  // invalid
+  return {
+    isValid: false,
+    age: 0,
+    dob: 'MYKAD INVALID',
+    state: 'MYKAD INVALID',
+    gender: 'MYKAD INVALID',
+  }
+}
+
 
 /**
  * MyKad Validator
