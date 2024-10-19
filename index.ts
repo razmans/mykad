@@ -204,7 +204,7 @@ export function mykadState(mykad: string): string {
     71: State.NotInMalaysia,
     72: State.NotInMalaysia
   };
-  return state[stateCode] ? state[stateCode] : State.NotInMalaysia;
+  return state[stateCode] ?? State.NotInMalaysia;
 }
 
 /**
