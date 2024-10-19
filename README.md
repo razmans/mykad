@@ -43,7 +43,8 @@ import {
     mykadAge, 
     mykadDOB, 
     mykadState, 
-    mykadGender } from '@razmans/mykad';
+    mykadGender,
+    readMyKadNum } from '@razmans/mykad';
 
 const myKadNumber = 'your-mykad-number-here';
 const validate = mykadValidator(myKadNumber); // Example: true/false
@@ -51,6 +52,9 @@ const age=mykadAge(myKadNumber); // Example: 30
 const dob=mykadDOB(myKadNumber); // Example: '1994-02-03'
 const state=mykadState(myKadNumber); // Example: 'WP Kuala Lumpur'
 const gender=mykadGender(myKadNumber);// Example: 'F' or 'M'
+
+ // or 
+const { isValid, age, dob, state, gender } = readMyKadNum(myKadNumber); // Returns everything
 
 ```
 
