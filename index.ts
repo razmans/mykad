@@ -125,7 +125,7 @@ export function mykadDOB(mykad: string): string {
  * @returns Gender string 'F' or 'M'
  */
 
-/** Determine a person's gender based on MyKad number */
+/** Determine a person's gender based on MyKad number  */
 export function mykadGender(mykad: string): string {
   if (!mykadValidator(mykad)) {
     return 'MYKAD INVALID';
