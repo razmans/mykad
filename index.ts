@@ -130,7 +130,7 @@ export function mykadGender(mykad: string): string {
   if (!mykadValidator(mykad)) {
     return 'MYKAD INVALID';
   }
-  return parseInt(mykad.split('-')[1]) % 2 === 0 ? 'M' : 'F';
+  return parseInt(mykad.split('-')[2]) % 2 === 0 ? 'F' : 'M';
 }
 
 /**
