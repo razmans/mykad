@@ -107,10 +107,51 @@ export function mykadDOB(mykad: string): string {
     parseInt(mykad.substring(2, 4)) && parseInt(mykad.substring(2, 4)) < 10
       ? '0' + parseInt(mykad.substring(2, 4))
       : parseInt(mykad.substring(2, 4));
+  //if month is more than 12, it is invalid
+  if (parseInt(mykad.substring(2, 4)) > 12) {
+    return 'MYKAD INVALID';
+  }
   const day =
     parseInt(mykad.substring(4, 6)) && parseInt(mykad.substring(4, 6)) < 10
       ? '0' + parseInt(mykad.substring(4, 6))
       : parseInt(mykad.substring(4, 6));
+  //if day is more than 31, it is invalid
+  if (parseInt(mykad.substring(4, 6)) > 31) {
+    return 'MYKAD INVALID';
+  }
+  //if month is 2 and day is more than 29, it is invalid
+  if (
+    parseInt(mykad.substring(2, 4)) === 2 &&
+    parseInt(mykad.substring(4, 6)) > 29
+  ) {
+    return 'MYKAD INVALID';
+  }
+
+  //if month is january, march, may, july, august, october, december and day is more than 31, it is invalid
+  if (
+    (parseInt(mykad.substring(2, 4)) === 1 ||
+      parseInt(mykad.substring(2, 4)) === 3 ||
+      parseInt(mykad.substring(2, 4)) === 5 ||
+      parseInt(mykad.substring(2, 4)) === 7 ||
+      parseInt(mykad.substring(2, 4)) === 8 ||
+      parseInt(mykad.substring(2, 4)) === 10 ||
+      parseInt(mykad.substring(2, 4)) === 12) &&
+    parseInt(mykad.substring(4, 6)) > 31
+  ) {
+    return 'MYKAD INVALID';
+  }
+
+  //if month is april, june, september, november and day is more than 30, it is invalid
+  if (
+    (parseInt(mykad.substring(2, 4)) === 4 ||
+      parseInt(mykad.substring(2, 4)) === 6 ||
+      parseInt(mykad.substring(2, 4)) === 9 ||
+      parseInt(mykad.substring(2, 4)) === 11) &&
+    parseInt(mykad.substring(4, 6)) > 30
+  ) {
+    return 'MYKAD INVALID';
+  }
+
   const currentYear = new Date().getFullYear() % 100;
 
   if (year > currentYear) {
