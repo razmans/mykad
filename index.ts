@@ -103,12 +103,14 @@ export function mykadDOB(mykad: string): string {
     return 'MYKAD INVALID';
   }
   const year = parseInt(mykad.substring(0, 2));
-  const month = parseInt(mykad.substring(2, 4))
-    ? '0' + parseInt(mykad.substring(2, 4))
-    : parseInt(mykad.substring(2, 4));
-  const day = parseInt(mykad.substring(4, 6))
-    ? '0' + parseInt(mykad.substring(4, 6))
-    : parseInt(mykad.substring(4, 6));
+  const month =
+    parseInt(mykad.substring(2, 4)) && parseInt(mykad.substring(2, 4)) < 10
+      ? '0' + parseInt(mykad.substring(2, 4))
+      : parseInt(mykad.substring(2, 4));
+  const day =
+    parseInt(mykad.substring(4, 6)) && parseInt(mykad.substring(4, 6)) < 10
+      ? '0' + parseInt(mykad.substring(4, 6))
+      : parseInt(mykad.substring(4, 6));
   const currentYear = new Date().getFullYear() % 100;
 
   if (year > currentYear) {
