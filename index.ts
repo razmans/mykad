@@ -134,12 +134,9 @@ export function mykadDOB(mykad: string): string {
     const isValidDay = (1 <= parseInt(day) && parseInt(day) <= 31)
     const isValidMonth = (1 <= parseInt(month) && parseInt(month) <= 12)
     const isDayCorrectInMonth = day <= MaxDayOfMonth[month];
-
-    return [isValidDay, isValidMonth, isDayCorrectInMonth].every(condition => condition === true);
-
     //  Actually, lack of LeapYear check
     //  e.g. 2025-02-29  INVALID
-    //       2024-02-28  VALID
+    return [isValidDay, isValidMonth, isDayCorrectInMonth].every(condition => condition === true);
   }
 
   const year = getYear(mykad)   // e.g. 84
@@ -151,7 +148,7 @@ export function mykadDOB(mykad: string): string {
 
   // valid day & month
   const currentYear = new Date().getFullYear() % 100;
-  const adjustedYear = year > currentYear ? year + 1900 : year + 2000;  // only works until 2099
+  const adjustedYear = year > currentYear ? year + 1900 : year + 2000;  // assume everyone < 100 years old
 
   return `${adjustedYear}-${month}-${day}`;
 }
