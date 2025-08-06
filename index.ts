@@ -102,63 +102,58 @@ export function mykadDOB(mykad: string): string {
   if (!mykadValidator(mykad)) {
     return 'MYKAD INVALID';
   }
-  const year = parseInt(mykad.substring(0, 2));
-  const month =
-    parseInt(mykad.substring(2, 4)) && parseInt(mykad.substring(2, 4)) < 10
-      ? '0' + parseInt(mykad.substring(2, 4))
-      : parseInt(mykad.substring(2, 4));
-  //if month is more than 12, it is invalid
-  if (parseInt(mykad.substring(2, 4)) > 12) {
-    return 'MYKAD INVALID';
-  }
-  const day =
-    parseInt(mykad.substring(4, 6)) && parseInt(mykad.substring(4, 6)) < 10
-      ? '0' + parseInt(mykad.substring(4, 6))
-      : parseInt(mykad.substring(4, 6));
-  //if day is more than 31, it is invalid
-  if (parseInt(mykad.substring(4, 6)) > 31) {
-    return 'MYKAD INVALID';
-  }
-  //if month is 2 and day is more than 29, it is invalid
-  if (
-    parseInt(mykad.substring(2, 4)) === 2 &&
-    parseInt(mykad.substring(4, 6)) > 29
-  ) {
-    return 'MYKAD INVALID';
+
+  function getYear(mykad: string) {
+    return parseInt(mykad.substring(0, 2));
   }
 
-  //if month is january, march, may, july, august, october, december and day is more than 31, it is invalid
-  if (
-    (parseInt(mykad.substring(2, 4)) === 1 ||
-      parseInt(mykad.substring(2, 4)) === 3 ||
-      parseInt(mykad.substring(2, 4)) === 5 ||
-      parseInt(mykad.substring(2, 4)) === 7 ||
-      parseInt(mykad.substring(2, 4)) === 8 ||
-      parseInt(mykad.substring(2, 4)) === 10 ||
-      parseInt(mykad.substring(2, 4)) === 12) &&
-    parseInt(mykad.substring(4, 6)) > 31
-  ) {
-    return 'MYKAD INVALID';
+  function getMonth(mykad: string): string {
+    return mykad.substring(2, 4).padStart(2, '0');
   }
 
-  //if month is april, june, september, november and day is more than 30, it is invalid
-  if (
-    (parseInt(mykad.substring(2, 4)) === 4 ||
-      parseInt(mykad.substring(2, 4)) === 6 ||
-      parseInt(mykad.substring(2, 4)) === 9 ||
-      parseInt(mykad.substring(2, 4)) === 11) &&
-    parseInt(mykad.substring(4, 6)) > 30
-  ) {
-    return 'MYKAD INVALID';
+  function getDay(mykad: string): string {
+    return mykad.substring(4, 6).padStart(2, "0");
   }
 
+  function isValidDayAndMonth(month: string, day: string): boolean {
+    const MaxDayOfMonth = {
+      '01': 31,
+      '02': 29,
+      '03': 31,
+      '04': 30,
+      '05': 31,
+      '06': 30,
+      '07': 31,
+      '08': 31,
+      '09': 30,
+      '10': 31,
+      '11': 30,
+      '12': 31
+    }
+
+    const isValidDay = (1 <= parseInt(day) && parseInt(day) <= 31)
+    const isValidMonth = (1 <= parseInt(month) && parseInt(month) <= 12)
+    const isDayCorrectInMonth = day <= MaxDayOfMonth[month];
+
+    return [isValidDay, isValidMonth, isDayCorrectInMonth].every(condition => condition === true);
+
+    //  Actually, lack of LeapYear check
+    //  e.g. 2025-02-29  INVALID
+    //       2024-02-28  VALID
+  }
+
+  const year = getYear(mykad)   // e.g. 84
+  const month = getMonth(mykad) // e.g '08'
+  const day = getDay(mykad)     // e.g. 30'
+
+  // invalid
+  if (!isValidDayAndMonth(month, day)) return "MYKAD INVALID";
+
+  // valid day & month
   const currentYear = new Date().getFullYear() % 100;
+  const adjustedYear = year > currentYear ? year + 1900 : year + 2000;  // only works until 2099
 
-  if (year > currentYear) {
-    return `19${year}-${month}-${day}`;
-  } else {
-    return `20${year}-${month}-${day}`;
-  }
+  return `${adjustedYear}-${month}-${day}`;
 }
 
 /**
